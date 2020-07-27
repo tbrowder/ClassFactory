@@ -1,0 +1,88 @@
+#!/usr/bin/env raku
+
+use Getopt::Long;
+
+use lib <./lib>;
+use ClassFactory;
+
+my $p = get-options( 
+            # modes
+            'initialize|i=s',
+            'build|b',
+            'download|d',
+            'show|s=s',
+            # options
+            'no-git|n',
+            'help|h',
+            'debug|D',
+            # always use the ':permute' option which ensures unknown 
+            # args get in the .list and don't mess up the known 
+            # options in the Capture
+            :permute, 
+            );
+
+my $usage = "Usage: {$*PROGRAM.basename} mode [options...][--help]";
+# notice we reverse the option/alias order to emphasize the alias
+sub help() {
+    say qq:to/HERE/;
+    $usage
+
+    Modes:
+        i|initialize F - create a ClassFactory file tree in the current
+                             directory for a factory named 'F'
+        b|build        - create or refresh the JSON versions of the 
+                             class instances 
+        d|download     - download the Raku file ''
+        s|show X       - show a list of the factory's X objects where X is one of
+                             c|classes
+                             f|files
+                             d|data
+
+    Options:
+        n|no-git       - with 'initialize', do not create a git repostory
+        h|help
+        D|debug
+    HERE
+    exit;
+}
+
+# since we use the :permute option to get-options,
+# the .list will contain all the unknown args
+my @o = $p.list;
+my $nu = @o.elems;
+if $nu {
+    my $s = $nu > 1 ?? 's' !! '';
+    # these are unknown args    
+    # and are cause for abort
+    note "FATAL: Unknown arg$s:";
+    note "  $_" for @o.sort;
+    exit;
+}
+
+# the known args:
+my %o = $p.hash;
+for %o.keys.sort -> $k {
+    my $v = %o{$k};
+    say "$k => $v";
+}
+
+=finish
+
+#show-files;
+for @*ARGS {
+    when /show [\s+ (\N)]? / {
+        if ~$0.defined {
+        }
+
+        my $dir = ~$0 // 0;
+        if $dir ~~ :d {
+            say "files in dir '$dir':";
+        }
+    }
+    default {
+        note "FATAL: Unknown arg '$_'";
+        exit;
+    }
+
+}
+

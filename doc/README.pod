@@ -1,0 +1,144 @@
+# ClassFactory
+
+This module provides tools to create a data collection
+with classes to describe and use the
+persistent data. 
+
+## SYNOPSIS
+
+    $ mkdir somedir
+    $ cd somedir
+
+    # Initialize the factory with your desired name:
+    $ cfact --initialize PROJ
+
+The module is designed to use
+static data to describe such things as configuration
+and specifications for book and other document formats
+but it could also be used for 
+collections of data for scientific research.
+Classes have only built-in scalar attributes so they
+act something like a struct with methods in C++.
+
+The initialization step shown above results in a directory
+and file structure like this:
+
+    .git           
+    .gitignore     # <== contains: 'data/.json'
+    .project       # <== contains: 'factory = PROJ'
+    classes/
+        .keep
+    data/
+        .keep
+    examples/
+        README
+        a.class
+        b.data
+    lib/
+        .keep
+
+If git is not available a warning will be issued
+and the init process aborted. If no version control
+is wanted or a different vcs will be used pass
+the '-novcs' option along with '-init'.
+
+This factory currently uses its own list format data files but
+could easily be extended to create classes to use other
+data formats such as CSV or Excel XMLS files.
+
+We start with a description of a class in a simple
+text format with each data line consisting of one
+or two words:
+
+    # comments are ok
+    class: classname
+    id Str    # This attribute is required and will be added to all
+              # classes automatically if it is missing.
+    attr1     # default type is Str
+    attr2 Num # valid entries: Str, Int, UInt, Num
+    attrN
+
+The same file can contain multiple class definitions
+with the new class definition starting with the
+'class:' keyword and ending with the end of file
+or the start of a new class.
+
+The data file for an instance of classname looks
+almost the same:
+
+    # comments are ok
+    classdata: classname
+    id sometext     # Two words only. The combination of classname
+                    # and id must be unique within the factory.
+                    # If the user does not provide a value, one
+                    # will be provided automatically.
+    attr1 some text # Str type
+    attr2 1.2       # one value, a Num
+    attr3 -3        # one value, an Int
+    attr4 4         # one value, an UInt
+
+The data files may also contain multiple classdata definitions.
+
+The file names used for class definitions have no relation
+to the generated products, but an extension of '.class'
+is used by the module to indicate the file contains one
+or more class definitions.
+Likewise, '.data' is the extension used for class instance
+data files. Ultimately, all instance files will be
+converted into JSON format and named 'class.id.json'.
+
+The next step is creating the data for the factory. When one
+or more data files are created you can then start using
+the factory but first you must run
+
+    cfact -build
+
+which creates the 'lib/PROJ.rakumod' file with class definitions
+and converts existing data files into JSON
+format which are saved in a hidden directory 'data/.json'.
+From then on any changes to source files of classes or data
+will be ignored. At any time you can rerun the '-build'
+step to refresh all files which includes deleting 
+and recreating the existing 'data/.json' directory
+and 'lib/PROJ.rakumod' file.
+
+## Using the data factory
+
+To use the data we create a simple access script
+to show all data in the collection:
+
+    cf-show-factory
+
+That program should use the PROJ module and read
+all the data files under the 'data/.json' directory.
+
+You can get a local copy of that file by running:
+
+    cfact -download
+
+## Work flow for using the factory
+
+A using program will prepare for data
+use by instantiating the collection:
+
+   use ClassFactory;
+   instantiate;
+
+Then all objects in directory 'data/.json'
+will be accessible through
+the exported hash:
+  
+    %data{$class}{$id};
+
+In addition, class names are available through the 
+exported hash:
+
+    %classes;
+
+# Planned features
+
++ Create the factory from data in a CSV file
++ Create the factory from data in an Excel XMLS file
+
+
+
