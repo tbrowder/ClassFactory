@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/tbrowder/ClassFactory.svg?branch=master)](https://travis-ci.com/tbrowder/ClassFactory)
+
 # ClassFactory
 
 This module provides tools to create a data collection with classes to describe and use the persistent data. 
