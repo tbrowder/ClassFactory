@@ -1,10 +1,12 @@
 [![Build Status](https://travis-ci.com/tbrowder/ClassFactory.svg?branch=master)](https://travis-ci.com/tbrowder/ClassFactory)
 
-# ClassFactory
+ClassFactory
+============
 
 This module provides tools to create a data collection with classes to describe and use the persistent data. 
 
-## SYNOPSIS
+SYNOPSIS
+--------
 
     $ mkdir somedir
     $ cd somedir
@@ -69,7 +71,8 @@ The next step is creating the data for the factory. When one or more data files 
 
 which creates the 'lib/PROJ.rakumod' file with class definitions and converts existing data files into JSON format which are saved in a hidden directory 'data/.json'. From then on any changes to source files of classes or data will be ignored. At any time you can rerun the '-build' step to refresh all files which includes deleting and recreating the existing 'data/.json' directory and 'lib/PROJ.rakumod' file.
 
-## Using the data factory
+Using the data factory
+----------------------
 
 To use the data we create a simple access script to show all data in the collection:
 
@@ -81,7 +84,8 @@ You can get a local copy of that file by running:
 
     cfact -download
 
-## Work flow for using the factory
+Work flow for using the factory
+-------------------------------
 
 A using program will prepare for data use by instantiating the collection:
 
@@ -96,7 +100,10 @@ In addition, class names are available through the exported hash:
 
     %classes;
 
-# Planned features
+Planned features
+----------------
 
-+ Create the factory from data in a CSV file + Create the factory from data in an Excel XMLS file
+  * Create the factory from data in a CSV file
+
+  * Create the factory from data in an Excel XMLS file
 

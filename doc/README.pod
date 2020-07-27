@@ -1,12 +1,12 @@
 =begin pod
 
-# ClassFactory
+=head1 ClassFactory
 
 This module provides tools to create a data collection
 with classes to describe and use the
 persistent data. 
 
-## SYNOPSIS
+=head2 SYNOPSIS
 
     $ mkdir somedir
     $ cd somedir
@@ -104,7 +104,7 @@ step to refresh all files which includes deleting
 and recreating the existing 'data/.json' directory
 and 'lib/PROJ.rakumod' file.
 
-## Using the data factory
+=head2 Using the data factory
 
 To use the data we create a simple access script
 to show all data in the collection:
@@ -118,7 +118,7 @@ You can get a local copy of that file by running:
 
     cfact -download
 
-## Work flow for using the factory
+=head2 Work flow for using the factory
 
 A using program will prepare for data
 use by instantiating the collection:
@@ -137,10 +137,10 @@ exported hash:
 
     %classes;
 
-# Planned features
+=head2 Planned features
 
-+ Create the factory from data in a CSV file
-+ Create the factory from data in an Excel XMLS file
+=item Create the factory from data in a CSV file
+=item Create the factory from data in an Excel XMLS file
 
 
 =end pod
