@@ -55,7 +55,7 @@ sub collect-class-instances($dir, :$debug) {
 sub collect-class-definitions($dir, :$debug) {
 } # end sub
 
-sub read-class-definitions($f, :$debug) {
+sub read-class-instances($f, :$debug) {
 } # end sub
 
 sub read-class-definitions($f, :$debug) {

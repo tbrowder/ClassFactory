@@ -1,35 +1,37 @@
 {
-    "perl"        : "6.*",
-    "name"        : "ClassFactory",
-    "version"     : "0.0.1",
-    "api"         : "1",
-    "description" : "Provides tools for creating a data collection with clases for using the data.",
-    "auth"        : "github:tbrowder",
-    "author"      : "github:tbrowder",
-    "authors"     : [ "Tom Browder <tom.browder@gmail.com>" ],
-    "license"     : "Artistic-2.0",
-    "source-url"  : "https://github.com/tbrowder/ClassFactory.git",
-    "support"     : {
-        "bugtracker" : "https://github.com/tbrowder/ClassFactory/issues"
-    },
-    "provides"    : {
-        "ClassFactory" : "lib/ClassFactory.rakumod"
-    },
-    "test-depends"     : [
-	"Test::META"
-    ],
-    "depends" : [
-        "Hash2Class",
-	"Text::Utils"
-    ],
-    "resources" : [
-    ],
-    "tags" : [
-	"class", 
-        "data", 
-        "factory", 
-        "json", 
-        "hjson", 
-        "hash"
-    ]
+  "api" : "1",
+  "auth" : "github:tbrowder",
+  "author" : "github:tbrowder",
+  "authors" : [
+    "Tom Browder <tom.browder@gmail.com>"
+  ],
+  "build-depends" : [ ],
+  "depends" : [
+    "Hash2Class",
+    "Text::Utils"
+  ],
+  "description" : "Provides tools for creating a data collection with clases for using the data.",
+  "license" : "Artistic-2.0",
+  "name" : "ClassFactory",
+  "perl" : "6.*",
+  "provides" : {
+    "ClassFactory" : "lib/ClassFactory.rakumod"
+  },
+  "resources" : [ ],
+  "source-url" : "https://github.com/tbrowder/ClassFactory.git",
+  "support" : {
+    "bugtracker" : "https://github.com/tbrowder/ClassFactory/issues"
+  },
+  "tags" : [
+    "class",
+    "data",
+    "factory",
+    "json",
+    "hjson",
+    "hash"
+  ],
+  "test-depends" : [
+    "Test::META"
+  ],
+  "version" : "0.0.1"
 }

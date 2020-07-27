@@ -1,3 +1,5 @@
+=begin pod
+
 # ClassFactory
 
 This module provides tools to create a data collection
@@ -141,4 +143,5 @@ exported hash:
 + Create the factory from data in an Excel XMLS file
 
 
+=end pod
 
